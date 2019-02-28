@@ -16,12 +16,12 @@ public class CustomerDao {
 		try {
 			
 			Properties dbProps =new Properties();
-			dbProps.load(this.getClass().getClassLoader().getResourceAsStream("dev-db.properties"));
+			dbProps.load(this.getClass().getClassLoader().getResourceAsStream("prod-db.properties"));
 			//Class.forName("oracle.jdbc.OracleDriver");
 			//conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "hr", "Newuser123");
 			Class.forName(dbProps.getProperty("driverClassName"));
 			conn = DriverManager.getConnection(dbProps.getProperty("url"),dbProps.getProperty("username"),dbProps.getProperty("password"));
-			String sql = "insert into customer values(?,?,?)";
+			String sql = "insert into customer_A  values(?,?,?)";
 			smt = conn.prepareStatement(sql);
 			smt.setInt(1, customer.getId_number());
 			smt.setString(2, customer.getName());
